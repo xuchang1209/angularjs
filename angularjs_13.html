@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一个AngularJS表单的例子</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/angular.js/1.3.14/angular.js"></script>
+</head>
+<body>
+<div data-ng-app="myEx" data-ng-controller="ExampleController">
+    <form> First Name:<br/>
+        <input type="text" data-ng-model="user.firstName"/><br/>
+        Last Name:<br/>
+        <input type="text" data-ng-model="user.lastName"/>
+        <br/><br/>
+        <button data-ng-click="reset()">RESET</button>
+    </form>
+    <p>form = {{user}}</p>
+    <p>master = {{master}}</p>
+</div>
+<script type="text/javascript">
+    angular.module('myEx', []).controller('ExampleController', function($scope) {
+        $scope.master = {"firstName":"John","lastName":"Doe"};
+        $scope.reset = function() {
+            $scope.user = angular.copy($scope.master);
+        };
+        $scope.reset();
+    });
+</script>
+</body>
+</html>
