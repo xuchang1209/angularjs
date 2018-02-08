@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一个AngularJS应用程序示例</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/angular.js/1.3.14/angular.js"></script>
+</head>
+<body>
+<div class="ng-scope" style="width: 400px; border: 1px solid black; padding: 10px; background-color: yellow;"
+     data-ng-app="myNoteApp" data-ng-controller="myNoteCtrl">
+    <h2>My Note</h2>
+    <textarea class="ng-pristine ng-untouched ng-valid" rows="10" cols="40" data-ng-model="message"></textarea>
+    <br/><br/>
+    <button data-ng-click="save()">Save</button>
+    <button data-ng-click="clear()">Clear</button>
+    <p>
+        Number of characters left: <strong><span class="ng-binding" data-ng-bind="left()">100</span></strong>
+    </p>
+</div>
+<script type="text/javascript">
+    var app = angular.module("myNoteApp", []);
+
+    app.controller("myNoteCtrl", function ($scope) {
+        $scope.message = "";
+        $scope.left = function () {
+            return 100 - $scope.message.length;
+        };
+        $scope.clear = function () {
+            $scope.message = "";
+        };
+        $scope.save = function () {
+            alert("Note Saved");
+        };
+    });
+</script>
+</body>
+</html>
